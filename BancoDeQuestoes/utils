@@ -1,4 +1,5 @@
 - Instalar IDE
+    ***
 
 - Criar projeto 'python puro' com exatamente o nome "BancoDeQuestoes"
 
@@ -7,7 +8,8 @@ $ pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
 $ mkdir -p $WORKON_HOME
 $ source /usr/local/bin/virtualenvwrapper.sh
-
+$ mkvirtualenv banco --python=/usr/bin/python3.5
+$ workon banco
 
 - Git
 -Dentro do venv do projeto criado
@@ -22,3 +24,6 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 git push origin master
 git remote add origin https://github.com/EmersonPereiraOliveira/BancoDeQuestoes
+git push origin master
+
+talvez seja necessário instalar o workon novamente
