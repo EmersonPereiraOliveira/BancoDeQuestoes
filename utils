@@ -36,3 +36,4 @@ pip freeze < requirements.txt
 
 
 talvez seja necessário instalar o workon novamente
+a
