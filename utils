@@ -16,6 +16,8 @@ git push origin master
 git remote add origin https://github.com/EmersonPereiraOliveira/BancoDeQuestoes
 git push origin master
 
+
+#Desconsiderar
 - Instalar Workon
 $ pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
@@ -26,8 +28,10 @@ $ workon banco
 
 (SEMPRE DENTRO DO VENV E COM O AMBIENTE VIRTUAL ATIVADO)
 
-pip install flask
 
+
+pip install -r requirements.txt
+pip freeze < requirements.txt
 
 
 
