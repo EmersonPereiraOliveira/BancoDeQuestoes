@@ -33,10 +33,14 @@ $ workon banco
 pip install -r requirements.txt
 pip freeze < requirements.txt
 
+#####################################
+Faça!
 
+$ pip install -r requirements.txt
+Para verificar que o servidor está rodando, faça:
+$ python run.py runserver
 
-talvez seja necessário instalar o workon novamente
-
+127.0.0.1:5000
 
 
 ##############
@@ -46,3 +50,10 @@ pip install flask
 pip install Flask-SQLAlchemy
 pip install Flask-script
 pip install Flask-migrate
+pip install Flask-wtf
+
+
+
+#####
+python3 run.py db migrate
+python3 run.py db upgrade

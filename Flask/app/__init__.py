@@ -13,8 +13,5 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-#python3 run.py db migrate
-#python3 run.py db upgrade
-
-#from app.models import tables, forms
+from app.models import tables, forms
 from app.controllers import default_routes
