@@ -16,4 +16,4 @@ def cadastrar_professor():
     form_usuario = UsuarioForm()
     form_professor = ProfessorForm()
     data = [form_usuario, form_professor]
-    return render_template("cadastrar-professor.html", form_usuario=form_usuario)
+    return render_template("cadastrar-professor.html", data=data)
