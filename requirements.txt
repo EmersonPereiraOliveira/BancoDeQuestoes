@@ -4,6 +4,7 @@ Flask==0.12.2
 Flask-Migrate==2.1.1
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2
+Flask-WTF==0.14.2
 itsdangerous==0.24
 Jinja2==2.10
 Mako==1.0.7
@@ -18,3 +19,4 @@ virtualenv==15.2.0
 virtualenv-clone==0.3.0
 virtualenvwrapper==4.8.2
 Werkzeug==0.14.1
+WTForms==2.1
