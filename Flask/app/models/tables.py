@@ -14,10 +14,11 @@ class Usuario(db.Model):
     bairro = db.Column(db.String(50))
     login = db.Column( db.String(50))
     senha = db.Column(db.String(50))
+    email = db.Column(db.String(50))
 
 
     # Defini os atributos de inicialização
-    def __init__(self, nome ,cargo,cpf,rg,rua,numero,bairro,login,senha):
+    def __init__(self, nome ,cargo,cpf,rg,rua,numero,bairro,login,senha, email):
         self.nome = nome
         self.cargo = cargo
         self.cpf = cpf
@@ -27,7 +28,7 @@ class Usuario(db.Model):
         self.bairro = bairro
         self.login = login
         self.senha = senha
-
+        self.email = email
 
     # Retorna informações sobre o usuário
     def __repr__(self):
@@ -37,12 +38,12 @@ class Professor(db.Model) :
     __tablename__ = "professores"
 
     id = db.Column(db.Integer, primary_key=True)
-    constitucional = db.Column(db.String(50))
+    codInstitucional = db.Column(db.String(50))
     area = db.Column(db.String(50))
-    usuario = db.Column(db.Integer,db.ForeignKey(usuario.id))
+    usuario = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
 
-    def __init__(self, constitucional,area,usuario):
-        self.constitucional = constitucional
+    def __init__(self, codInstitucional,area,usuario):
+        self.codInstitucional = codInstitucional
         self.area = area
         self.usuario = usuario
 
@@ -56,7 +57,7 @@ class Disciplina(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50))
     descricao = db.Column(dbString(50))
-    professor = db.Column(db.Integer, db.ForeignKey(professor.id))
+    professor = db.Column(db.Integer, db.ForeignKey('professores.id'))
 
     def __init__(self,nome,descricao,professor):
         self.nome = nome
@@ -65,4 +66,41 @@ class Disciplina(db.Model):
 
     def __repr__(self):
         return "<disciplina %r>" % self.nome
+
+class Assunto(db.Model):
+    __tablename__ = "assuntos"
+
+    disciplina = db.Column(db.Integer, db.ForeignKey('disciplinas.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    assunto = db.Column(db.String(50))
+    descricao = db.Column(db.String(30))
+
+    def __init__(self, disciplina, id, assunto, descricao):
+        self.disciplina = disciplina
+        self.id = id
+        self.assunto = assunto
+        self.descricao = descricao
+
+    def __repr__(self):
+        return "<assunto %r>" % self.descricao
+
+class Questao(db.Model):
+    __tablename__ = "questoes"
+
+    id = db.Column(db.Integer, primary_key=True)
+    enunciado = db.Column(db.String(300))
+    resposta = db.Conlumn(db.String(300))
+    assunto = db.Column(db.Integer, db.ForeignKey('assuntos.id'))
+    status = db.Column(db.String(50))
+
+
+    def __init__(self, id, enunciado, resposta, assunto, status):
+        self.id = id
+        self.enunciado = enunciado
+        self.resposta = resposta
+        self.assunto = assunto
+        self.status = status
+
+    def __repr__(self):
+        return "<questao %r>" % self.enunciado
 
