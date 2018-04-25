@@ -39,7 +39,7 @@ class Professor(db.Model) :
     id = db.Column(db.Integer, primary_key=True)
     constitucional = db.Column(db.String(50))
     area = db.Column(db.String(50))
-    usuario = db.Column(db.Integer,db.ForeignKey(usuario.id))
+    usuario = db.Column(db.Integer,db.ForeignKey(Usuario.id))
 
     def __init__(self, constitucional,area,usuario):
         self.constitucional = constitucional
@@ -55,8 +55,8 @@ class Disciplina(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50))
-    descricao = db.Column(dbString(50))
-    professor = db.Column(db.Integer, db.ForeignKey(professor.id))
+    descricao = db.Column(db.String(50))
+    professor = db.Column(db.Integer, db.ForeignKey(Professor.id))
 
     def __init__(self,nome,descricao,professor):
         self.nome = nome
