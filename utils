@@ -53,7 +53,19 @@ pip install Flask-migrate
 pip install Flask-wtf
 
 
+25-04-2018
 
-#####
-python3 run.py db migrate
-python3 run.py db upgrade
+##### Banco de Dados
+
+$ python run.py db init #Criar a pasta migrations...
+$ python3 run.py db migrate # Mapeia o models e cria o banco de dados
+$ python3 run.py db upgrade # "Torna persistente"
+
+
+### sqlite3
+$ sqlite3 storage.db #Ver o banco de dados - sqlite3 nomeDobanco
+$ .tables # == select * from table.... ver tabelas
+
+# Existe ainda um bug... caso uma alteração seja feita em alguma tabela q já exista
+# o orm não permite. Até encontrarmos a solução o jeito é caso isso aconteça, apagar
+# todo o migrate e storage.db e criar o db de novo...

@@ -8,7 +8,6 @@ class Usuario(db.Model):
     nome = db.Column(db.String(50))
     email = db.Column(db.String(50), unique=True)
     senha = db.Column(db.String(50))
-    setor = db.Column(db.Integer, db.ForeignKey('setores.id'))
 
     # Defini os atributos de inicialização
     def __init__(self, nome, email, senha, setor):
