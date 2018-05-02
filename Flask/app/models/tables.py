@@ -37,12 +37,12 @@ class Professor(db.Model) :
     __tablename__ = "professores"
 
     id = db.Column(db.Integer, primary_key=True)
-    constitucional = db.Column(db.String(50))
+    institucional = db.Column(db.String(50))
     area = db.Column(db.String(50))
-    usuario = db.Column(db.Integer,db.ForeignKey(Usuario.id))
+    usuario = db.Column(db.Integer, db.ForeignKey(Usuario.id))
 
-    def __init__(self, constitucional,area,usuario):
-        self.constitucional = constitucional
+    def __init__(self, institucional,area,usuario):
+        self.institucional = institucional
         self.area = area
         self.usuario = usuario
 
