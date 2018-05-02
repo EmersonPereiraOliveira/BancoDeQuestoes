@@ -28,10 +28,10 @@ class Usuario(db.Model):
         self.login = login
         self.senha = senha
 
-
     # Retorna informações sobre o usuário
     def __repr__(self):
             return "<usuario %r>" % self.nome
+
 
 class Professor(db.Model) :
     __tablename__ = "professores"
