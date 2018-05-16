@@ -66,3 +66,18 @@ class Disciplina(db.Model):
     def __repr__(self):
         return "<disciplina %r>" % self.nome
 
+class Assunto(db.Model):
+    __tablename__ = "assuntos"
+
+    id = db.Column(db.Integer, primary_key=True)
+    descricao = db.Column(db.String(100))
+    assunto = db.Column(db.String(100))
+    disciplina = db.Column(db.Integer, db.ForeignKey(Disciplina.id))
+
+    def __init__(self, descricao, assunto, disciplina):
+        self.descricao = descricao
+        self.assunto = assunto
+        self.disciplina = disciplina
+
+    def __repr__(self):
+        return "<assuntos %r>" % self.n

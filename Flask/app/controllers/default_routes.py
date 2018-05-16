@@ -47,3 +47,23 @@ def cadastrar_professor():
     form_professor = ProfessorForm()
     data = [form_usuario, form_professor]
     return render_template("cadastrar-professor.html", data=data)
+
+
+@app.route("/cadastrar-disciplina", methods=["GET", "POST"])
+def cadastrar_disciplina():
+    if request.method == "POST":
+        descricao = request.form.get("descricao")
+        nome = request.form.get("nome")
+        professor = request.form.get("professor")
+
+        if descricao and nome and professor:
+            disciplina = Disciplina(nome, descricao, professor)
+            db.session.add(disciplina)
+            db.session.commit()
+
+            flash("Cadastro de disciplina realizado com sucesso!")
+            return redirect(url_for('cadastrar_disciplina'))
+
+    form_disciplina = DisciplinaForm()
+    data = form_disciplina
+    return render_template("cadastrar-disciplina.html", data=data)
