@@ -1,0 +1,27 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+
+    <div class="col-md-3 col-md-offset-4">
+        <label>CRUD Professor</label>
+        <form action="/crud-professor-executar" method="POST">
+            <div class="form-group">
+                {{ data[0].nome(class="form-control", placeholder="Insira o nome", value=data[1].nome) }}
+                {{ data[0].cargo(class="form-control", placeholder="Insira o cargo") }}
+                {{ data[0].rg(class="form-control", placeholder="Insira o rg") }}
+                {{ data[0].cpf(class="form-control", placeholder="Insira o cpf") }}
+                {{ data[0].rua(class="form-control", placeholder="Insira o rua") }}
+                {{ data[0].numero(class="form-control", placeholder="Insira o numero") }}
+                {{ data[0].bairro(class="form-control", placeholder="Insira o bairro") }}
+                {{ data[0].login(class="form-control", placeholder="Insira o login") }}
+                {{ data[0].senha(class="form-control", placeholder="Insira a senha") }}
+
+
+            </div>
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+    </div>
+
+
+{% include 'base/footer.html' %}

@@ -1,0 +1,32 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+    {% block content %}
+    <div class="col-md-3 col-md-offset-4">
+        <form action="/editar-professor" method="POST">
+            <div class="form-group">
+                <label>Buscar Professor</label>
+                <table>
+                    <tr>
+                        <td>Institucional<td>
+                        <td>Area<td>
+                    </tr>
+
+                    {% for p in data[1] %}
+                    <tr>
+                        <td>  {{ p.institucional}}</td>
+                        <td> {{ p.area }}<td>
+                    </tr>
+
+                    <a href="/editar_professor/{{professor_id}}">Editar</a><br>
+                {% endfor %}
+                </table>
+
+            </div>
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+    </div>
+    {% endblock%}
+
+{% include 'base/footer.html' %}
