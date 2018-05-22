@@ -1,0 +1,23 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+    {% block content %}
+    <div class="col-md-3 col-md-offset-4">
+        <form action="/cadastrar-disciplina" method="POST">
+            <div class="form-group">
+                <label>Cadastrar Disciplina</label>
+                <label>Professor:</label>
+                {{ data[1].professor(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os professores")}}
+                <label>Disciplina:</label>
+                {{ data[0].nome(class="form-control", placeholder="Insira o nome da disciplina")}}
+                <label>Descricao:</label>
+                {{data[0].descricao(class="form-control", placeholder="Insira a descricao")}}
+
+            </div>
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+    </div>
+    {% endblock%}
+
+{% include 'base/footer.html' %}
