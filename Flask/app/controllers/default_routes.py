@@ -47,7 +47,6 @@ def cadastrar_professor():
     data = [form_usuario, form_professor]
     return render_template("cadastrar-professor.html", data=data)
 
-<<<<<<< HEAD
 @app.route("/editar-professor/<int:id>", methods=["GET","POST"])
 def editar_professor():
     professor = db.session.query(Professor).filter_by(_id=id).first
@@ -137,7 +136,7 @@ def crud_professor_executar():
 
         return render_template("editar_professor",data=data)
     form_professor = ProfessorForm()
-=======
+
 
 @app.route("/cadastrar-disciplina", methods=["GET", "POST"])
 def cadastrar_disciplina():
@@ -157,4 +156,3 @@ def cadastrar_disciplina():
     form_disciplina = DisciplinaForm()
     data = form_disciplina
     return render_template("cadastrar-disciplina.html", data=data)
->>>>>>> 2f4a1c3f9dad5a21cd49574c48a061325d3e7145

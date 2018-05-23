@@ -1,0 +1,29 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+<div class="conteiner">
+<h3 class="text-center">Listar Professores</h3>
+<hr>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th escope="col" class="text-center">Nome</th>
+      <th scope="col" class="text-center">Código Institucional</th>
+      <th scope="col" class="text-center">CPF</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for professor in Professor%}
+    <tr>
+        <td>{{professor.nome}}</td>
+        <td>{{professor.institucional}}</td>
+        <td>{{professor.cpf}}</td>
+       <!-- <td><a href="/excluir-professor/{{professor._id}}">X</a></td>-->
+        <td><a href"/editar-professor/{{professor}}"></a>E</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
