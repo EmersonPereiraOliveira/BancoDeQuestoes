@@ -66,18 +66,36 @@ class Disciplina(db.Model):
     def __repr__(self):
         return "<disciplina %r>" % self.nome
 
-class Assunto(db.Model):
-    __tablename__ = "assuntos"
+
+class Aluno(db.Model):
+    __tablename__ = "alunos"
 
     id = db.Column(db.Integer, primary_key=True)
-    descricao = db.Column(db.String(100))
-    assunto = db.Column(db.String(100))
-    disciplina = db.Column(db.Integer, db.ForeignKey(Disciplina.id))
+    matricula = db.Column(db.String(50))
+    usuario = db.Column(db.Integer,db.ForeignKey(usuario.id))
 
-    def __init__(self, descricao, assunto, disciplina):
-        self.descricao = descricao
-        self.assunto = assunto
-        self.disciplina = disciplina
+    def __init__(self,matricula,usuario):
+        self.matricula = matricula
+        self.usuario = usuario
 
     def __repr__(self):
-        return "<assuntos %r>" % self.n
+        return "<aluno %r>" % self.usuario.nome
+
+class Questao(db.Model):
+    __tablename__ = "questoes"
+
+    id = db.Column(db.Integer, primary_key=True)
+    enunciado = db.Column(db.String(1000))
+    resposta = db.Column(db.Boolean)
+    status = db.Column(db.Boolean)
+    disciplina = db.Column(db.Integer,db.ForeignKey(disciplina.id))
+
+    def __init__(self,enunciado,resposta,status,disciplina):
+        self.enunciado = enunciado
+        self.disciplina = disciplina
+        self.resposta = resposta
+        self.status =status
+
+    def __repr__(self):
+        return "<questao %r>" % self.enunciado
+
