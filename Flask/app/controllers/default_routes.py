@@ -29,7 +29,6 @@ def cadastrar_professor():
         institucional = request.form.get("institucional")
 
 
-
         if nome and cargo and cpf and rg and rua and numero and bairro and login and senha and institucional and area:
             usuario = Usuario(nome, cargo, cpf, rg, rua, numero, bairro, login, senha)
             db.session.add(usuario)
@@ -46,6 +45,7 @@ def cadastrar_professor():
     form_professor = ProfessorForm()
     data = [form_usuario, form_professor]
     return render_template("cadastrar-professor.html", data=data)
+
 
 @app.route("/editar-professor/<int:id>", methods=["GET","POST"])
 def editar_professor():
@@ -96,18 +96,17 @@ def buscar_professor():
 @app.route("/crud-professor", methods=["GET","POST"])
 def crud_professor():
     form_crud_professor = CrudProfessorForm()
-    #usuario = db.session.query(Usuario).all()
-    usuario = db.session.query(Usuario).first()
+    usuario = db.session.query(Usuario).all()
+    #usuario = db.session.query(Usuario).first()
+    #professor = db.session.query(Professor).first()
     professor = db.session.query(Professor).all()
     data = [form_crud_professor, usuario, professor]
     return render_template("crud-professor.html", data=data)
 
 
-
+@app.route("/crud-professor-executar", methods=["GET","POST"])
 @app.route("/crud-professor-executar/<int:id>", methods=["GET","POST"])
 def crud_professor_executar():
-    professor = db.session.query(Professor).filter_by(_id=id).first
-
     if request.method == "POST":
         nome = request.form.get("nome")
         cargo = request.form.get("cargo")
@@ -119,23 +118,43 @@ def crud_professor_executar():
         login = request.form.get("login")
         senha = request.form.get("senha")
 
+        if nome and cargo and cpf and rg and rua and numero and bairro and login and senha:
+            usuario = Usuario(nome, cargo, cpf, rg, rua, numero, bairro, login, senha)
+            db.session.add(usuario)
+            db.session.commit()
+            flash("Cadastro de usuário realizado com sucesso!")
+            return redirect(url_for('crud_professor'))
 
-        if nome and cargo and cpf and rg and rua and numero and bairro and login and senha :
-            professor.nome = nome
-            professor.cargo = cargo
-            professor.cpf = cpf
-            professor.rg = rg
-            professor.rua = rua
-            professor.numero = numero
-            professor.bairro = bairro
-            professor.login = login
-            professor.senha = senha
+    elif request.method == "GET":
+        professor = db.session.query(Professor).filter_by(_id=id).first
 
-            db.session.commit
-            return redirect(url_for(editar_professor))
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            cargo = request.form.get("cargo")
+            cpf = request.form.get("cpf")
+            rg = request.form.get("rg")
+            rua = request.form.get("rua")
+            numero = request.form.get("numero")
+            bairro = request.form.get("bairro")
+            login = request.form.get("login")
+            senha = request.form.get("senha")
 
-        return render_template("editar_professor",data=data)
-    form_professor = ProfessorForm()
+
+            if nome and cargo and cpf and rg and rua and numero and bairro and login and senha :
+                professor.nome = nome
+                professor.cargo = cargo
+                professor.cpf = cpf
+                professor.rg = rg
+                professor.rua = rua
+                professor.numero = numero
+                professor.bairro = bairro
+                professor.login = login
+                professor.senha = senha
+
+                db.session.commit()
+                return redirect(url_for(editar_professor))
+
+    return 0
 
 
 @app.route("/cadastrar-disciplina", methods=["GET", "POST"])
