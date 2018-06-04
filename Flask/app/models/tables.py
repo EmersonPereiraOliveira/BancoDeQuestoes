@@ -31,7 +31,7 @@ class Usuario(db.Model):
             return "<usuario %r>" % self.nome
 
 
-class Professor(db.Model) :
+class Professor(Usuario, db.Model) :
     __tablename__ = "professores"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -39,10 +39,11 @@ class Professor(db.Model) :
     area = db.Column(db.String(50))
     usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
 
-    def __init__(self, institucional,area,usuario):
+    def __init__(self, nome ,cargo,cpf,rg,rua,numero,bairro,login,senha, institucional,area,usuario):
+        super(Professor, self).__init__(nome ,cargo,cpf,rg,rua,numero,bairro,login,senha)
         self.institucional = institucional
         self.area = area
-        #self.usuario = usuario
+        self.usuario = usuario
 
     def __repr__(self):
         return "<professor %r>" % self.usuario.nome
