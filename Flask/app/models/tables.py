@@ -1,7 +1,6 @@
 from app import db
 
 class Usuario(db.Model):
-    # Cria a tabela usuarios
     __tablename__ = "usuarios"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +13,6 @@ class Usuario(db.Model):
     bairro = db.Column(db.String(50))
     login = db.Column( db.String(50))
     senha = db.Column(db.String(50))
-
 
     # Defini os atributos de inicialização
     def __init__(self, nome ,cargo,cpf,rg,rua,numero,bairro,login,senha):
@@ -39,12 +37,12 @@ class Professor(db.Model) :
     id = db.Column(db.Integer, primary_key=True)
     institucional = db.Column(db.String(50))
     area = db.Column(db.String(50))
-    usuario = db.Column(db.Integer, db.ForeignKey(Usuario.id))
+    usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
 
     def __init__(self, institucional,area,usuario):
         self.institucional = institucional
         self.area = area
-        self.usuario = usuario
+        #self.usuario = usuario
 
     def __repr__(self):
         return "<professor %r>" % self.usuario.nome
@@ -56,7 +54,7 @@ class Disciplina(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50))
     descricao = db.Column(db.String(50))
-    professor = db.Column(db.Integer, db.ForeignKey(Professor.id))
+    professor = db.Column(db.Integer, db.ForeignKey('professores.id'))
 
     def __init__(self,nome,descricao,professor):
         self.nome = nome
@@ -72,7 +70,7 @@ class Aluno(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     matricula = db.Column(db.String(50))
-    usuario = db.Column(db.Integer,db.ForeignKey(usuario.id))
+    usuario = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
 
     def __init__(self,matricula,usuario):
         self.matricula = matricula
@@ -88,7 +86,7 @@ class Questao(db.Model):
     enunciado = db.Column(db.String(1000))
     resposta = db.Column(db.Boolean)
     status = db.Column(db.Boolean)
-    disciplina = db.Column(db.Integer,db.ForeignKey(disciplina.id))
+    disciplina = db.Column(db.Integer,db.ForeignKey('disciplinas.id'))
 
     def __init__(self,enunciado,resposta,status,disciplina):
         self.enunciado = enunciado

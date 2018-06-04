@@ -8,7 +8,7 @@ from app.models.tables import Usuario, Professor
 @app.route("/index")
 @app.route("/home")
 def index():
-    return "Pronto! Servidor OK"
+    return render_template("index.html")
 
 
 @app.route("/cadastrar-professor", methods=["GET", "POST"])
@@ -44,10 +44,10 @@ def cadastrar_professor():
     form_usuario = UsuarioForm()
     form_professor = ProfessorForm()
     data = [form_usuario, form_professor]
-    return render_template("cadastrar-professor.html", data=data)
+    return render_template("professor/cadastrar-professor.html", data=data)
 
 
-@app.route("/editar-professor/<int:id>", methods=["GET","POST"])
+@app.route("/atualizar-professor/<int:id>", methods=["GET","POST"])
 def editar_professor():
     professor = db.session.query(Professor).filter_by(_id=id).first
 
@@ -79,13 +79,12 @@ def editar_professor():
             db.session.commit
             return redirect(url_for(editar_professor))
 
-        return render_template("editar_professor",data=data)
+        return render_template("professor/atualizar_professor",data=data)
     form_professor = ProfessorForm()
 
 
-@app.route("/buscar-professor", methods=["GET", "POST"])
+@app.route("/listar-professor", methods=["GET", "POST"])
 def buscar_professor():
-    #usuario = db.session.query(Usuario).filter_by().first
     form_professor = ProfessorForm()
     professor = db.session.query(Professor).all()
     data = [form_professor, professor]
@@ -93,15 +92,7 @@ def buscar_professor():
 
 
 
-@app.route("/crud-professor", methods=["GET","POST"])
-def crud_professor():
-    form_crud_professor = CrudProfessorForm()
-    usuario = db.session.query(Usuario).all()
-    #usuario = db.session.query(Usuario).first()
-    #professor = db.session.query(Professor).first()
-    professor = db.session.query(Professor).all()
-    data = [form_crud_professor, usuario, professor]
-    return render_template("crud-professor.html", data=data)
+
 
 
 @app.route("/crud-professor-executar", methods=["GET","POST"])
