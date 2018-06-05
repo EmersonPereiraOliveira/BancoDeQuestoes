@@ -7,19 +7,18 @@
         <form action="/cadastrar-professor" method="POST">
             <div class="form-group">
                 <label>Cadastrar Professor</label>
-                {{ data[0].nome(class="form-control", placeholder="Insira o nome") }}
-                {{ data[0].cargo(class="form-control", placeholder="Insira o cargo") }}
-                {{ data[0].rg(class="form-control", placeholder="Insira o rg") }}
-                {{ data[0].cpf(class="form-control", placeholder="Insira o cpf") }}
-                {{ data[0].rua(class="form-control", placeholder="Insira o rua") }}
-                {{ data[0].numero(class="form-control", placeholder="Insira o numero") }}
-                {{ data[0].bairro(class="form-control", placeholder="Insira o bairro") }}
-                {{ data[0].login(class="form-control", placeholder="Insira o login") }}
-                {{ data[0].senha(class="form-control", placeholder="Insira a senha") }}
-
-                {{ data[1].institucional(class="form-control", placeholder="Insira a institucional") }}
-                {{ data[1].area(class="form-control", placeholder="Insira a area") }}
-                {{ data[1].usuario(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os usários") }}
+                {{ form_professor.nome(class="form-control", placeholder="Insira o nome") }}
+                {{ form_professor.cargo(class="form-control", placeholder="Insira o cargo") }}
+                {{ form_professor.rg(class="form-control", placeholder="Insira o rg") }}
+                {{ form_professor.cpf(class="form-control", placeholder="Insira o cpf") }}
+                {{ form_professor.rua(class="form-control", placeholder="Insira o rua") }}
+                {{ form_professor.numero(class="form-control", placeholder="Insira o numero") }}
+                {{ form_professor.bairro(class="form-control", placeholder="Insira o bairro") }}
+                {{ form_professor.login(class="form-control", placeholder="Insira o login") }}
+                {{ form_professor.senha(class="form-control", placeholder="Insira a senha") }}
+                {{ form_professor.institucional(class="form-control", placeholder="Insira a institucional") }}
+                {{ form_professor.area(class="form-control", placeholder="Insira a area") }}
+                {{ form_professor.usuario(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os usários") }}
 
             </div>
             <button type="submit" class="btn btn-default">Enviar</button>
