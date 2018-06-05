@@ -40,10 +40,13 @@ def cadastrar_professor():
 
 
 @app.route("/atualizar-professor/<int:id>", methods=["GET","POST"])
-def atualizar_professor():
-    professor = db.session.query(Professor).filter_by(_id=id).first
-
-    if request.method == "POST":
+@app.route('/atualizar-professor', methods=['POST'])
+def atualizar_professor(id):
+    if id != None and request.method == "GET":
+        professor = Professor.query.filter_by(id=id).first()
+        form_professor = ProfessorForm()
+        return render_template('professor/atualizar-professor.html', form_professor=form_professor, professor=professor)
+    elif request.method == "POST":
         nome = request.form.get("nome")
         cargo = request.form.get("cargo")
         cpf = request.form.get("cpf")
@@ -55,32 +58,29 @@ def atualizar_professor():
         senha = request.form.get("senha")
         area = request.form.get("area")
         institucional = request.form.get("institucional")
-
-        if nome and cargo and cpf and rg and rua and numero and bairro and login and senha :
+        usuario = request.form.get("usuario ")
+        #Não permitir alterar o usuário
+        if nome and cargo and cpf and rua and bairro and login and area and institucional:
+            professor = Professor.query.filter_by(id=id).first()
             professor.nome = nome
             professor.cargo = cargo
             professor.cpf = cpf
-            professor.rg = rg
             professor.rua = rua
-            professor.numero = numero
             professor.bairro = bairro
             professor.login = login
             professor.senha = senha
-
+            professor.area = area
+            professor.institucional = institucional
             db.session.commit()
-            return redirect(url_for(editar_professor))
+            flash("Atualização realizada com sucesso!")
+        return redirect(url_for('listar_professor'))
 
-        return render_template("professor/atualizar_professor.html",data=data)
-    form_professor = ProfessorForm()
 
 
 @app.route("/listar-professor", methods=["GET", "POST"])
 def listar_professor():
-    form_professor = ProfessorForm()
     professor = db.session.query(Professor).all()
-    form = form_professor
-    professor = professor
-    return render_template("professor/listar-professor.html", form=form, professor=professor)
+    return render_template("professor/listar-professor.html", professor=professor)
 
 
 @app.route('/excluir-professor/<int:id>', methods=['GET', 'POST'])

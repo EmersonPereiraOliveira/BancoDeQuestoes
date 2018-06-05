@@ -3,28 +3,16 @@
 {% include 'base/nav_bar.html' %}
 
 <div class="col-md-3 col-md-offset-4">
-        <label>CRUD Professor</label>
-        <form action="/crud-professor-executar" method="POST">
+        <form action="/atualizar-professor/{{ professor.id }}" method="POST">
             <div class="form-group">
-                {%for u in data[1] and for p in data[2]%}
-                    <div class="col-md-3">
-                    {{ data[0].nome(class="form-control", placeholder="Insira o nome", value=data[1].nome) }}
-                    </div>
-                    <div class="col-md-3">
-                    {{ data[0].cargo(class="form-control", placeholder="Insira o cargo", value=data[1].cargo) }}
-                    </div>
-                    {{ data[0].rg(class="form-control", placeholder="Insira o rg", value=data[1].cpf) }}
-                    {{ data[0].cpf(class="form-control", placeholder="Insira o cpf", value=data[1].cpf) }}
-                    {{ data[0].rua(class="form-control", placeholder="Insira o rua", value=data[1].rua) }}
-                    {{ data[0].numero(class="form-control", placeholder="Insira o numero", value=data[1].numero) }}
-                    {{ data[0].bairro(class="form-control", placeholder="Insira o bairro", value=data[1].bairro) }}
-                    {{ data[0].login(class="form-control", placeholder="Insira o login", value=data[1].login) }}
-                    {{ data[0].senha(class="form-control", placeholder="Insira a senha", value=data[2].senha) }}
-                    {{ data[0].institucional(class="form-control", placeholder="Insira a institucional", value=p.institucional) }}
-                    {{ data[0].area(class="form-control", placeholder="Insira a area", value=data[2].area) }}
-                    {{ data[0].usuario(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os usários", value=data[1].usuario) }}
-                    <br>
-                {% endfor %}
+                    {{ form_professor.nome(class="form-control", value=professor.nome) }}
+                    {{ form_professor.cargo(class="form-control", value=professor.cargo) }}
+                    {{ form_professor.cpf(class="form-control", value=professor.cpf) }}
+                    {{ form_professor.rua(class="form-control", value=professor.rua) }}
+                    {{ form_professor.bairro(class="form-control", value=professor.bairro) }}
+                    {{ form_professor.login(class="form-control", value=professor.login) }}
+                    {{ form_professor.institucional(class="form-control", value=professor.institucional) }}
+                    {{ form_professor.area(class="form-control", value=professor.area) }}
             </div>
             <button type="submit" class="btn btn-default">Enviar</button>
         </form>
