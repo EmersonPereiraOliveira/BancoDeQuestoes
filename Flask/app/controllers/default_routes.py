@@ -112,7 +112,7 @@ def cadastrar_aluno():
 
         usuario = request.form.get("usuario")
 
-        if nome and cargo and cpf and rg and rua and numero and bairro and login and senha and matricula and usuario:
+        if nome and cargo and cpf and rg and rua and numero and bairro and login and senha and matricula:
             aluno = Aluno(nome, cargo, cpf, rg, rua, numero, bairro, login, senha,matricula, usuario)
             db.session.add(aluno)
             db.session.commit()
@@ -154,7 +154,6 @@ def atualizar_aluno(id):
         return redirect(url_for('listar_aluno'))
 
 
-
 @app.route("/listar-aluno", methods=["GET", "POST"])
 def listar_aluno():
     aluno = db.session.query(Aluno).all()
@@ -168,12 +167,10 @@ def excluir_aluno(id):
         db.session.delete(aluno)
         db.session.commit()
         flash("Exclusão realizada com sucesso!")
-        return redirect(url_for('aluno'))
+        return redirect(url_for('listar_aluno'))
     else:
         flash("Exclusão não conluída!")
-        return redirect(url_for('aluno'))
-
-
+        return redirect(url_for('listar_aluno'))
 
 @app.route("/cadastrar-disciplina", methods=["GET", "POST"])
 def cadastrar_disciplina():
