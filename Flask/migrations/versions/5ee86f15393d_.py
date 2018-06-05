@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0b88dbf93c79
+Revision ID: 5ee86f15393d
 Revises: 
-Create Date: 2018-06-04 15:10:15.377357
+Create Date: 2018-06-05 18:28:12.580916
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0b88dbf93c79'
+revision = '5ee86f15393d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,10 +57,13 @@ def upgrade():
     )
     op.create_table('questoes',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('enunciado', sa.String(length=1000), nullable=True),
-    sa.Column('resposta', sa.Boolean(), nullable=True),
-    sa.Column('status', sa.Boolean(), nullable=True),
+    sa.Column('enunciado1', sa.String(length=1000), nullable=True),
+    sa.Column('enunciado2', sa.String(length=1000), nullable=True),
+    sa.Column('enunciado3', sa.String(length=1000), nullable=True),
+    sa.Column('enunciado4', sa.String(length=1000), nullable=True),
+    sa.Column('resposta', sa.String(length=1000), nullable=True),
     sa.Column('disciplina', sa.Integer(), nullable=True),
+    sa.Column('status', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['disciplina'], ['disciplinas.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

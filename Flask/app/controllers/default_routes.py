@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, request, flash, url_for, redirect
 from app import app, db
 
-from app.models.forms import ProfessorForm, CrudProfessorForm, AlunoForm
-from app.models.tables import Usuario, Professor, Aluno
+from app.models.forms import ProfessorForm, AlunoForm, QuestaoForm
+from app.models.tables import Usuario, Professor, Aluno, Questao
 
 @app.route("/")
 @app.route("/index")
@@ -171,6 +171,78 @@ def excluir_aluno(id):
     else:
         flash("Exclusão não conluída!")
         return redirect(url_for('listar_aluno'))
+
+
+@app.route("/cadastrar-questao", methods=["GET", "POST"])
+def cadastrar_questao():
+    if request.method == "POST":
+        enunciado1 = request.form.get("enunciado1")
+        enunciado2 = request.form.get("enunciado2")
+        enunciado3 = request.form.get("enunciado3")
+        enunciado4 = request.form.get("enunciado4")
+        resposta = request.form.get("resposta")
+        disciplina = request.form.get("disciplina")
+        status = request.form.get("status")
+
+        if enunciado1 and enunciado2 and enunciado3 and enunciado4 and resposta and disciplina and status:
+            questao = Questao(enunciado1, enunciado2, enunciado3, enunciado4, disciplina, status)
+            db.session.add(questao)
+            db.session.commit()
+            flash("Cadastro de questão realizado com sucesso!")
+            #return redirect(url_for('listar_disciplina'))
+
+    form_questao = QuestaoForm()
+    return render_template("questao/cadastrar-questao.html", form_questao=form_questao)
+
+
+@app.route("/atualizar-questao/<int:id>", methods=["GET","POST"])
+@app.route('/atualizar-questao', methods=['POST'])
+def atualizar_questao(id):
+    if id != None and request.method == "GET":
+        aluno = Aluno.query.filter_by(id=id).first()
+        form_aluno = AlunoForm()
+        return render_template('aluno/atualizar-aluno.html', form_aluno=form_aluno, aluno=aluno)
+    elif request.method == "POST":
+        nome = request.form.get("nome")
+        cpf = request.form.get("cpf")
+        rua = request.form.get("rua")
+        bairro = request.form.get("bairro")
+        login = request.form.get("login")
+        senha = request.form.get("senha")
+        matricula = request.form.get("matricula")
+
+        if nome and cpf and rua and bairro and login and matricula:
+            aluno = Aluno.query.filter_by(id=id).first()
+            aluno.nome = nome
+            aluno.cpf = cpf
+            aluno.rua = rua
+            aluno.bairro = bairro
+            aluno.login = login
+            aluno.senha = senha
+            aluno.matricula = matricula
+            db.session.commit()
+            flash("Atualização realizada com sucesso!")
+        return redirect(url_for('listar_aluno'))
+
+
+@app.route("/listar-questao", methods=["GET", "POST"])
+def listar_questao():
+    questao = db.session.query(Questao).all()
+    return render_template("questao/listar-questao.html", questao=questao)
+
+
+@app.route('/excluir-aluno/<int:id>', methods=['GET', 'POST'])
+def excluir_questao(id):
+    aluno = Aluno.query.filter_by(id=id).first()
+    if aluno:
+        db.session.delete(aluno)
+        db.session.commit()
+        flash("Exclusão realizada com sucesso!")
+        return redirect(url_for('listar_aluno'))
+    else:
+        flash("Exclusão não conluída!")
+        return redirect(url_for('listar_aluno'))
+
 
 @app.route("/cadastrar-disciplina", methods=["GET", "POST"])
 def cadastrar_disciplina():

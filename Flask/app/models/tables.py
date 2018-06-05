@@ -85,17 +85,26 @@ class Questao(db.Model):
     __tablename__ = "questoes"
 
     id = db.Column(db.Integer, primary_key=True)
-    enunciado = db.Column(db.String(1000))
-    resposta = db.Column(db.Boolean)
-    status = db.Column(db.Boolean)
+    pergunta = db.Column(db.String(1000))
+    enunciado1 = db.Column(db.String(1000))
+    enunciado2 = db.Column(db.String(1000))
+    enunciado3 = db.Column(db.String(1000))
+    enunciado4 = db.Column(db.String(1000))
+    resposta = db.Column(db.String(1000))
     disciplina = db.Column(db.Integer,db.ForeignKey('disciplinas.id'))
+    status = db.Column(db.Boolean)
 
-    def __init__(self,enunciado,resposta,status,disciplina):
-        self.enunciado = enunciado
-        self.disciplina = disciplina
+    def __init__(self,pergunta, enunciado1, enunciado2, enunciado3, enunciado4,resposta,status,disciplina):
+        self.pergunta = pergunta
+        self.enunciado1 = enunciado1
+        self.enunciado2 = enunciado2
+        self.enunciado3 = enunciado3
+        self.enunciado4 = enunciado4
         self.resposta = resposta
-        self.status =status
+        self.disciplina = disciplina
+        self.status = status
 
     def __repr__(self):
         return "<questao %r>" % self.enunciado
+
 
