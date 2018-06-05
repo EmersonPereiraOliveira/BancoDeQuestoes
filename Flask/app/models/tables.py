@@ -66,14 +66,15 @@ class Disciplina(db.Model):
         return "<disciplina %r>" % self.nome
 
 
-class Aluno(db.Model):
+class Aluno(Usuario, db.Model):
     __tablename__ = "alunos"
 
     id = db.Column(db.Integer, primary_key=True)
     matricula = db.Column(db.String(50))
     usuario = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
 
-    def __init__(self,matricula,usuario):
+    def __init__(self, nome ,cargo,cpf,rg,rua,numero,bairro,login, senha, matricula,usuario):
+        super(Aluno, self).__init__(nome ,cargo,cpf,rg,rua,numero,bairro,login,senha)
         self.matricula = matricula
         self.usuario = usuario
 

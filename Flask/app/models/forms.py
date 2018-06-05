@@ -37,3 +37,30 @@ class CrudProfessorForm(FlaskForm):
     usuario = StringField("usuario", validators=[DataRequired()])
 
 
+class AlunoForm(FlaskForm):
+    nome = StringField("nome", validators=[DataRequired()])
+    cargo = StringField("cargo", validators=[DataRequired()])
+    rg = StringField("rg", validators=[DataRequired()])
+    cpf = StringField("cpf", validators=[DataRequired()])
+    rua = StringField("rua", validators=[DataRequired()])
+    numero = StringField("numero", validators=[DataRequired()])
+    bairro = StringField("bairro", validators=[DataRequired()])
+    login = StringField("login", validators=[DataRequired()])
+    senha = StringField("senha", validators=[DataRequired()])
+    matricula = StringField("matricula", validators=[DataRequired()])
+    usuario = StringField("usuario", validators=[DataRequired()])
+
+class CrudAlunoForm(FlaskForm):
+    nome = StringField("nome", validators=[DataRequired()])
+    cargo = StringField("cargo", validators=[DataRequired()])
+    rg = StringField("rg", validators=[DataRequired()])
+    cpf = StringField("cpf", validators=[DataRequired()])
+    rua = StringField("rua", validators=[DataRequired()])
+    numero = StringField("numero", validators=[DataRequired()])
+    bairro = StringField("bairro", validators=[DataRequired()])
+    login = StringField("login", validators=[DataRequired()])
+    senha = StringField("senha", validators=[DataRequired()])
+    matricula = StringField("matricula", validators=[DataRequired()])
+    usuario = StringField("usuario", validators=[DataRequired()])
+
+

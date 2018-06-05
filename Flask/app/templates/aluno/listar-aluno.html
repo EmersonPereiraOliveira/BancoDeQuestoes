@@ -1,0 +1,58 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+
+<a href="/cadastrar-aluno">
+        <button class="btn btn-lg btn-success">
+            Cadastrar
+        </button>
+    </a>
+    <hr>
+
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Cpf</th>
+                    <th>Rua</th>
+                    <th>Bairro</th>
+                    <th>E-mail / Login</th>
+                    <th>Matricula</th>
+                    <th>Atualizar</th>
+                    <th>Excluir</th>
+                </tr>
+                {% for p in aluno %}
+                <tr>
+                    <td>
+                        {{ p.id }}
+                    </td>
+                    <td>
+                        {{ p.nome }}
+                    </td>
+                    <td>
+                        {{ p.cpf }}
+                    </td>
+                    <td>
+                        {{ p.rua }}
+                    </td>
+                    <td>
+                        {{ p.bairro }}
+                    </td>
+                    <td>
+                        {{ p.login }}
+                    </td>
+                    <td>
+                        {{ p.matricula }}
+                    </td>
+                <td>
+                    <a href="{{ url_for('atualizar_aluno', id=p.id)}}">Atualizar?</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('excluir_aluno', id=p.id)}}">Excluir?</a>
+                </td>
+                </tr>
+                {% endfor %}
+        </table>
+        </div>

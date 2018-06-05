@@ -1,0 +1,35 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+
+<a href="/listar-aluno">
+        <button class="btn btn-lg btn-success">
+            Voltar
+        </button>
+    </a>
+    <hr>
+
+    {% block content %}
+    <div class="col-md-3 col-md-offset-4">
+        <form action="/cadastrar-aluno" method="POST">
+            <div class="form-group">
+                <label>Cadastrar Aluno</label>
+                {{ form_aluno.nome(class="form-control", placeholder="Insira o nome") }}
+                {{ form_aluno.cargo(class="form-control", placeholder="Insira o cargo") }}
+                {{ form_aluno.rg(class="form-control", placeholder="Insira o rg") }}
+                {{ form_aluno.cpf(class="form-control", placeholder="Insira o cpf") }}
+                {{ form_aluno.rua(class="form-control", placeholder="Insira o rua") }}
+                {{ form_aluno.numero(class="form-control", placeholder="Insira o numero") }}
+                {{ form_aluno.bairro(class="form-control", placeholder="Insira o bairro") }}
+                {{ form_aluno.login(class="form-control", placeholder="Insira o login") }}
+                {{ form_aluno.senha(class="form-control", placeholder="Insira a senha") }}
+                {{ form_aluno.matricula(class="form-control", placeholder="Insira o numero da matricula") }}
+                {{ form_aluno.usuario(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os usários") }}
+            </div>
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+    </div>
+    {% endblock%}
+
+{% include 'base/footer.html' %}

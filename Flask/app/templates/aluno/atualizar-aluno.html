@@ -1,0 +1,23 @@
+{% include 'base/head.html' %}
+{% include 'base/header.html' %}
+{% include 'base/nav_bar.html' %}
+
+<a href="/listar-aluno">
+        <button class="btn btn-lg btn-success">
+            Voltar
+        </button>
+    </a>
+    <hr>
+<div class="col-md-3 col-md-offset-4">
+        <form action="/atualizar-aluno/{{ aluno.id }}" method="POST">
+            <div class="form-group">
+                    {{ form_aluno.nome(class="form-control", value=aluno.nome) }}
+                    {{ form_aluno.cpf(class="form-control", value=aluno.cpf) }}
+                    {{ form_aluno.rua(class="form-control", value=aluno.rua) }}
+                    {{ form_aluno.bairro(class="form-control", value=aluno.bairro) }}
+                    {{ form_aluno.login(class="form-control", value=aluno.login) }}
+                    {{ form_aluno.matricula(class="form-control", value=aluno.matricula) }}
+            </div>
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </form>
+    </div>
