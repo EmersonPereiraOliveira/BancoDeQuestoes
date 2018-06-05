@@ -2,6 +2,14 @@
 {% include 'base/header.html' %}
 {% include 'base/nav_bar.html' %}
 
+
+<a href="/listar-professor">
+        <button class="btn btn-lg btn-success">
+            Voltar
+        </button>
+    </a>
+    <hr>
+
     {% block content %}
     <div class="col-md-3 col-md-offset-4">
         <form action="/cadastrar-professor" method="POST">
@@ -19,7 +27,6 @@
                 {{ form_professor.institucional(class="form-control", placeholder="Insira a institucional") }}
                 {{ form_professor.area(class="form-control", placeholder="Insira a area") }}
                 {{ form_professor.usuario(class="form-control", placeholder="Aqui vai ser um select pra buscando no bd os usários") }}
-
             </div>
             <button type="submit" class="btn btn-default">Enviar</button>
         </form>

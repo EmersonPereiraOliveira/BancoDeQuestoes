@@ -2,6 +2,12 @@
 {% include 'base/header.html' %}
 {% include 'base/nav_bar.html' %}
 
+<a href="/listar-professor">
+        <button class="btn btn-lg btn-success">
+            Voltar
+        </button>
+    </a>
+    <hr>
 <div class="col-md-3 col-md-offset-4">
         <form action="/atualizar-professor/{{ professor.id }}" method="POST">
             <div class="form-group">
